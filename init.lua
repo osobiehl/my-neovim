@@ -1,3 +1,8 @@
+--- Setup filetree parsing 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Mason Setup
 require("mason").setup({
     ui = {
@@ -8,7 +13,13 @@ require("mason").setup({
         },
     }
 })
+
 require("mason-lspconfig").setup()
+-- IMPORTS
+require('vars') -- Variables
+require('opts') -- Options
+require('keys') -- Keymaps
+require('plug') -- Plugins
 local rt = require("rust-tools")
 
 rt.setup({
@@ -120,24 +131,44 @@ require('nvim-treesitter.configs').setup {
     max_file_lines = nil,
   }
 }
--- Setup filetree parsing 
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
 -- empty setup using defaults
 require("nvim-tree").setup()
+local telescope_actions = require("telescope.actions.set")
 
--- IMPORTS
-require('vars') -- Variables
-require('opts') -- Options
-require('keys') -- Keymaps
-require('plug') -- Plugins
+local fixfolds = {
+	hidden = true,
+	attach_mappings = function(_)
+		telescope_actions.select:enhance({
+			post = function()
+				vim.cmd(":normal! zx")
+			end,
+		})
+		return true
+	end,
+}
+require('telescope').setup {
+	    defaults = {
+        file_ignore_patterns = {
+            ".git/",
+            "^./target/",
+            "LICENSE*"
+        }
+    },
+	pickers = {
+		buffers = fixfolds,
+		file_browser = fixfolds,
+		find_files = fixfolds,
+		git_files = fixfolds,
+		grep_string = fixfolds,
+		live_grep = fixfolds,
+		oldfiles = fixfolds,
+		-- I probably missed some
+	},
+}
+
 vim.cmd("colorscheme tokyonight")
 vim.cmd("set ignorecase")
--- LSP Navigation
--- Code Actions
 
