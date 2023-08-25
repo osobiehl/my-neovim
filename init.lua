@@ -21,7 +21,7 @@ require('opts') -- Options
 require('keys') -- Keymaps
 require('plug') -- Plugins
 local rt = require("rust-tools")
-
+require("lspconfig").clangd.setup({})
 rt.setup({
   server = {
     on_attach = function(_, bufnr)
@@ -46,7 +46,7 @@ sign({name = 'DiagnosticSignHint', text = ''})
 sign({name = 'DiagnosticSignInfo', text = ''})
 
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
     signs = true,
     update_in_insert = true,
     underline = true,
@@ -168,7 +168,7 @@ require('telescope').setup {
 		-- I probably missed some
 	},
 }
-
+require("trouble").setup()
 vim.cmd("colorscheme tokyonight")
 vim.cmd("set ignorecase")
 

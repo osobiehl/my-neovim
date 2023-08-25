@@ -88,7 +88,7 @@ map('n', "<leader>q", "vim.lsp.buf.hover_actions()<CR>")
 
  vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition)
  vim.keymap.set('n', '<c-k>', vim.lsp.buf.hover)
- vim.keymap.set('n', '<leader>fm',vim.lsp.buf.format)
+ vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format)
  vim.keymap.set('n', '<leader>K',vim.lsp.buf.signature_help)
  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation)
  vim.keymap.set('n', '<leader>c', vim.lsp.buf.incoming_calls)
@@ -100,4 +100,6 @@ map('n', "<leader>q", "vim.lsp.buf.hover_actions()<CR>")
 vim.cmd([[set number
 ]])
 vim.cmd([[set smartcase
+]])
+vim.cmd([[set relativenumber
 ]])

@@ -46,8 +46,11 @@ return require('packer').startup(function()
     	},
    }
 
+use {
+	'folke/trouble.nvim',
+requires =  {'nvim-tree/nvim-web-devicons'}, -- optional
+}
 
        use 'simrat39/symbols-outline.nvim' -- enable symbols tab
-
 	use 'folke/tokyonight.nvim'
 end)
