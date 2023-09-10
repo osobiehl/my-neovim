@@ -53,4 +53,10 @@ requires =  {'nvim-tree/nvim-web-devicons'}, -- optional
 
        use 'simrat39/symbols-outline.nvim' -- enable symbols tab
 	use 'folke/tokyonight.nvim'
+	-- Harpoon
+
+use {
+	'ThePrimeagen/harpoon',
+requires =  {'nvim-lua/plenary.nvim'}, -- optional
+}
 end)

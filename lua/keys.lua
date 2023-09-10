@@ -97,6 +97,18 @@ map('n', "<leader>q", "vim.lsp.buf.hover_actions()<CR>")
  vim.keymap.set('n', '<leader>n', vim.lsp.buf.rename)
  vim.keymap.set('n', '<leader>s', vim.lsp.buf.document_symbol)
  vim.keymap.set('n', '<leader>w', vim.lsp.buf.workspace_symbol)
+ local harpoon = require('harpoon')
+require("telescope").load_extension('harpoon')
+
+ vim.keymap.set('n', '<leader>ha', require("harpoon.mark").add_file)
+-- vim.keymap.set('n', '<leader>hh', require("harpoon.ui").toggle_quick_menu)
+
+ map('n', "<leader>hh", ":Telescope harpoon marks<CR>")
+ vim.keymap.set('n', '<leader>hb', require("harpoon.ui").nav_prev)
+ vim.keymap.set('n', '<leader>hn', require("harpoon.ui").nav_next)
+
+ -- harpoon keymaps
+ --
 vim.cmd([[set number
 ]])
 vim.cmd([[set smartcase

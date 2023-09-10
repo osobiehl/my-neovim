@@ -169,6 +169,7 @@ require('telescope').setup {
 	},
 }
 require("trouble").setup()
+require("harpoon").setup()
 vim.cmd("colorscheme tokyonight")
 vim.cmd("set ignorecase")
 
