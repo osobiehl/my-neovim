@@ -76,10 +76,24 @@ require("nvim-tree").setup {
   ---
 }
 map("n", "<leader>nf", ":NvimTreeToggle<CR>")
--- FloaTerm configuration
-vim.keymap.set('n', '<leader>nt', ':FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ', {})
-vim.keymap.set('n', '<leader>`', ':FloatermToggle myfloat<CR>', {})
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>:q<CR>', {})
+-- ToggleTerm configuration
+local counter = 0
+vim.keymap.set('n', '<leader>nt', function()
+	counter = counter  + 1 
+	local formatted  = string.format( ":%dToggleTerm size=20 direction=horizontal", counter)
+	vim.cmd(formatted)
+
+end, {})
+vim.keymap.set('n', '<leader>dt', function()
+	if (counter > 0) then
+		local formatted  = string.format( ":%dTermExec cmd='false || exit'", counter)
+		counter = counter  - 1
+		vim.cmd(formatted)
+	end
+end, {})
+
+vim.keymap.set('n', '<leader>`', ':ToggleTermToggleAll<CR>', {})
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', {})
 
 
 map('n', "<leader><Space>", ":lua vim.lsp.buf.code_action()<CR>")

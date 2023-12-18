@@ -44,6 +44,8 @@ sign({name = 'DiagnosticSignWarn', text = ''})
 sign({name = 'DiagnosticSignHint', text = ''})
 sign({name = 'DiagnosticSignInfo', text = ''})
 
+require('toggleterm').setup()
+
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,

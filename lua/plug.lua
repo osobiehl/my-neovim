@@ -20,9 +20,11 @@ return require('packer').startup(function()
     use 'hrsh7th/vim-vsnip'     
     use 'nvim-treesitter/nvim-treesitter'
     use 'puremourning/vimspector'
-    use 'voldikss/vim-floaterm'
     use 'airblade/vim-gitgutter'
    
+    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  		require("toggleterm").setup()
+    end}
     -- Used to hop around:
     use {
   'nvim-telescope/telescope.nvim', tag = '0.1.2',
