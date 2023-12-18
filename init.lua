@@ -2,7 +2,6 @@
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 -- Mason Setup
 require("mason").setup({
     ui = {
@@ -64,7 +63,16 @@ set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 -- Completion Plugin Setup
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
 -- Completion Plugin Setup
 local cmp = require'cmp'
 cmp.setup({
@@ -92,6 +100,7 @@ cmp.setup({
   -- Installed sources:
   sources = {
     { name = 'path' },                              -- file paths
+    { name = 'copilot', group_index = 2 },	    -- github copilot
     { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
@@ -107,6 +116,7 @@ cmp.setup({
       fields = {'menu', 'abbr', 'kind'},
       format = function(entry, item)
           local menu_icon ={
+	      Copilot = '',
               nvim_lsp = 'λ',
               vsnip = '⋗',
               buffer = 'Ω',

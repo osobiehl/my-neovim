@@ -59,7 +59,17 @@ use {
 	'ThePrimeagen/harpoon',
 requires =  {'nvim-lua/plenary.nvim'}, -- optional
 }
-use 'github/copilot.vim'
-
-
+use {
+  "zbirenbaum/copilot.lua",
+}
+use {
+  "zbirenbaum/copilot-cmp",
+  after = { "copilot.lua" },
+  config = function ()
+            require("copilot_cmp").setup({
+                event = { "InsertEnter", "LspAttach" },
+                fix_pairs = true,
+            })
+  end
+}
 end)
