@@ -59,4 +59,7 @@ use {
 	'ThePrimeagen/harpoon',
 requires =  {'nvim-lua/plenary.nvim'}, -- optional
 }
+use 'github/copilot.vim'
+
+
 end)
