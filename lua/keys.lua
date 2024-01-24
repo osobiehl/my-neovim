@@ -29,11 +29,12 @@ map('n', "De", ":call vimspector#Evaluate()<cr>")
 -- set leader key
 vim.g.mapleader = ';'
 local builtin = require('telescope.builtin')
+local tel_ext = require('telescope').extensions
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fg', tel_ext.live_grep_args.live_grep_args, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
+vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 -- place this in one of your configuration file(s)
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection

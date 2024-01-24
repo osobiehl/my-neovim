@@ -20,7 +20,10 @@ require('opts') -- Options
 require('keys') -- Keymaps
 require('plug') -- Plugins
 local rt = require("rust-tools")
-require("lspconfig").clangd.setup({})
+local lsp_config = require("lspconfig")
+lsp_config.clangd.setup({})
+lsp_config.pyright.setup({})
+
 rt.setup({
   server = {
     on_attach = function(_, bufnr)
@@ -182,6 +185,9 @@ require('telescope').setup {
 }
 require("trouble").setup()
 require("harpoon").setup()
+require("autoclose").setup()
 vim.cmd("colorscheme tokyonight")
 vim.cmd("set ignorecase")
 
+vim.cmd("cabbr <expr> %% expand('%')")
+vim.cmd("cabbr <expr> %H expand('%:h')")

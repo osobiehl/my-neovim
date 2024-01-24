@@ -29,7 +29,9 @@ return require('packer').startup(function()
     use {
   'nvim-telescope/telescope.nvim', tag = '0.1.2',
 -- or                            , branch = '0.1.x',
-  requires = { {'nvim-lua/plenary.nvim'} }
+  requires = { {'nvim-lua/plenary.nvim'},     { "nvim-telescope/telescope-live-grep-args.nvim" }, },   config = function()
+    require("telescope").load_extension("live_grep_args")
+  end 
 }
 
     use {
@@ -56,7 +58,7 @@ requires =  {'nvim-tree/nvim-web-devicons'}, -- optional
        use 'simrat39/symbols-outline.nvim' -- enable symbols tab
 	use 'folke/tokyonight.nvim'
 	-- Harpoon
-
+	use 'm4xshen/autoclose.nvim'
 use {
 	'ThePrimeagen/harpoon',
 requires =  {'nvim-lua/plenary.nvim'}, -- optional
@@ -74,4 +76,5 @@ use {
             })
   end
 }
+use {'vim-scripts/DoxygenToolkit.vim'}
 end)
