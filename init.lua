@@ -23,6 +23,7 @@ local rt = require("rust-tools")
 local lsp_config = require("lspconfig")
 lsp_config.clangd.setup({})
 lsp_config.pyright.setup({})
+lsp_config.lua_ls.setup({})
 
 rt.setup({
   server = {
@@ -146,6 +147,9 @@ require('nvim-treesitter.configs').setup {
     max_file_lines = nil,
   }
 }
+
+require ('treesitter-context').setup()
+
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
@@ -186,6 +190,22 @@ require('telescope').setup {
 require("trouble").setup()
 require("harpoon").setup()
 require("autoclose").setup()
+
+-- lua line setup
+require('lualine').setup({
+    sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename', 'location'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {}
+  },
+})
+
+require('gitsigns').setup()
+
+
 vim.cmd("colorscheme tokyonight")
 vim.cmd("set ignorecase")
 
