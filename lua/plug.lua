@@ -85,4 +85,6 @@ return require('packer').startup(function()
 		end
 	}
 	use { 'vim-scripts/DoxygenToolkit.vim' }
+
+	use { 'https://gitlab.com/schrieveslaach/sonarlint.nvim', as = 'sonarlint.nvim' }
 end)
