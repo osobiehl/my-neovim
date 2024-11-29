@@ -24,6 +24,11 @@ local lsp_config = require("lspconfig")
 lsp_config.clangd.setup({})
 lsp_config.pyright.setup({})
 lsp_config.lua_ls.setup({})
+lsp_config.rust_analyzer.setup({
+	checkOnSave = {
+		command = "clippy",
+	},
+})
 
 
 require('sonarlint').setup({
@@ -67,7 +72,7 @@ require('sonarlint').setup({
 		'java',
 	}
 })
-vim.lsp.set_log_level('debug')
+--vim.lsp.set_log_level('debug')
 
 
 rt.setup({
@@ -241,7 +246,7 @@ require('lualine').setup({
 	sections = {
 		lualine_a = { 'mode' },
 		lualine_b = { 'branch', 'diff', 'diagnostics' },
-		lualine_c = { 'filename', 'location' },
+		lualine_c = { { 'filename', path = 1 }, 'location' },
 		lualine_x = { 'encoding', 'fileformat', 'filetype' },
 		lualine_y = { 'progress' },
 		lualine_z = {}
