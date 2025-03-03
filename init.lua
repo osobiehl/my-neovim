@@ -73,7 +73,19 @@ require('sonarlint').setup({
 	}
 })
 --vim.lsp.set_log_level('debug')
-
+require("codecompanion").setup({
+	opts = {
+		log_level = "DEBUG", -- or "TRACE"
+	},
+	strategies = {
+		chat = {
+			adapter = "copilot",
+		},
+		inline = {
+			adapter = "copilot",
+		},
+	},
+})
 
 rt.setup({
 	server = {
@@ -118,11 +130,6 @@ vim.cmd([[
 set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
--- Completion Plugin Setup
-require("copilot").setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
-})
 
 local has_words_before = function()
 	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
@@ -156,7 +163,7 @@ cmp.setup({
 	-- Installed sources:
 	sources = {
 		{ name = 'path' },                         -- file paths
-		{ name = 'copilot',                group_index = 2 }, -- github copilot
+		--{ name = 'copilot',                group_index = 2 }, -- github copilot
 		{ name = 'nvim_lsp',               keyword_length = 3 }, -- from language server
 		{ name = 'nvim_lsp_signature_help' },      -- display function signatures with current parameter emphasized
 		{ name = 'nvim_lua',               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*

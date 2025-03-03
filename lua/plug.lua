@@ -71,20 +71,10 @@ return require('packer').startup(function()
 		'ThePrimeagen/harpoon',
 		requires = { 'nvim-lua/plenary.nvim' }, -- optional
 	}
-	use {
-		"zbirenbaum/copilot.lua",
-	}
-	use {
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup({
-				event = { "InsertEnter", "LspAttach" },
-				fix_pairs = true,
-			})
-		end
-	}
 	use { 'vim-scripts/DoxygenToolkit.vim' }
+
+	use { 'github/copilot.vim' }
+	use { 'olimorris/codecompanion.nvim' }
 
 	use { 'https://gitlab.com/schrieveslaach/sonarlint.nvim', as = 'sonarlint.nvim' }
 end)
