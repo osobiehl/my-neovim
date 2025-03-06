@@ -66,23 +66,44 @@ require('sonarlint').setup({
 
 	},
 	filetypes = {
-		-- Tested and working
-		'python',
-		'cpp',
+		-- Tested and workindefault		'cpp',
 		'java',
 	}
 })
---vim.lsp.set_log_level('debug')
+--vim.lsp.set_log_lev:Cel('debug')
 require("codecompanion").setup({
-	opts = {
-		log_level = "DEBUG", -- or "TRACE"
-	},
+	--	opts = {
+	--		log_level = "DEBUG", -- or "TRACE"
+	--	},
 	strategies = {
 		chat = {
 			adapter = "copilot",
+			slash_commands = {
+				["file"] = {
+					-- Location to the slash command in CodeCompanion
+					callback = "strategies.chat.slash_commands.file",
+					description = "Select a file using Telescope",
+					opts = {
+						provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
+						contains_code = true,
+					}
+				}
+			}
 		},
 		inline = {
 			adapter = "copilot",
+		},
+	},
+	display = {
+		action_palette = {
+			width = 95,
+			height = 10,
+			prompt = "Prompt ", -- Prompt used for interactive LLM calls
+			provider = "mini_pick", -- default|telescope|mini_pick
+			opts = {
+				show_default_actions = true, -- Show the default actions in the action palette?
+				show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+			},
 		},
 	},
 })

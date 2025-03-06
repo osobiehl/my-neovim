@@ -121,6 +121,14 @@ map('n', "<leader>hh", ":Telescope harpoon marks<CR>")
 vim.keymap.set('n', '<leader>hb', require("harpoon.ui").nav_prev)
 vim.keymap.set('n', '<leader>hn', require("harpoon.ui").nav_next)
 
+
+
+map('n', "<leader>gh", ":CodeCompanionChat toggle<CR>")
+map('v', "<leader>gi", ":CodeCompanion /buffer ")
+
+
+
+
 -- harpoon keymaps
 --
 vim.cmd([[set number

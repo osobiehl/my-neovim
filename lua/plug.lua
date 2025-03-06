@@ -73,6 +73,7 @@ return require('packer').startup(function()
 	}
 	use { 'vim-scripts/DoxygenToolkit.vim' }
 
+	use { 'echasnovski/mini.pick' }
 	use { 'github/copilot.vim' }
 	use { 'olimorris/codecompanion.nvim' }
 
