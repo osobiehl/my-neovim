@@ -19,16 +19,20 @@ require('vars') -- Variables
 require('opts') -- Options
 require('keys') -- Keymaps
 require('plug') -- Plugins
-local rt = require("rust-tools")
 local lsp_config = require("lspconfig")
 lsp_config.clangd.setup({})
 lsp_config.pyright.setup({})
 lsp_config.lua_ls.setup({})
-lsp_config.rust_analyzer.setup({
-	checkOnSave = {
-		command = "clippy",
-	},
-})
+lsp_config.rust_analyzer.setup {
+	settings = {
+		['rust-analyzer'] = {
+			check = {
+				command = "clippy",
+			}
+		}
+	}
+}
+
 
 
 require('sonarlint').setup({
@@ -108,16 +112,6 @@ require("codecompanion").setup({
 	},
 })
 
-rt.setup({
-	server = {
-		on_attach = function(_, bufnr)
-			-- Hover actions
-			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-			-- Code action groups
-			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-		end,
-	},
-})
 -- LSP Diagnostics Options Setup
 local sign = function(opts)
 	vim.fn.sign_define(opts.name, {
