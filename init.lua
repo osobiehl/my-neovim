@@ -13,7 +13,14 @@ require("mason").setup({
 	}
 })
 
-require("mason-lspconfig").setup()
+
+require("mason-lspconfig").setup({
+	handlers = {
+		-- Disable rust_analyzer by setting it to false
+		["rust_analyzer"] = function() end,
+	},
+})
+
 -- IMPORTS
 require('vars') -- Variables
 require('opts') -- Options
