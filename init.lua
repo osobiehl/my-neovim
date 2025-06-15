@@ -23,14 +23,27 @@ local lsp_config = require("lspconfig")
 lsp_config.clangd.setup({})
 lsp_config.pyright.setup({})
 lsp_config.lua_ls.setup({})
-lsp_config.rust_analyzer.setup {
-	settings = {
-		['rust-analyzer'] = {
-			check = {
-				command = "clippy",
-			}
-		}
-	}
+vim.g.rustaceanvim = {
+	-- Plugin configuration
+	--  tools = {
+	--  },
+	-- LSP configuration
+	server = {
+		on_attach = function(client, bufnr)
+			-- you can also put keymaps in here
+		end,
+		default_settings = {
+			-- rust-analyzer language server configuration
+			['rust-analyzer'] = {
+				check = {
+					command = "clippy",
+				}
+			},
+		},
+	},
+	-- DAP configuration
+	dap = {
+	},
 }
 
 
@@ -283,3 +296,6 @@ vim.cmd("set ignorecase")
 
 vim.cmd("cabbr <expr> %% expand('%')")
 vim.cmd("cabbr <expr> %H expand('%:h')")
+
+-- Toggle Inlay Hints
+vim.lsp.inlay_hint.enable(true)

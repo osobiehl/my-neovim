@@ -3,7 +3,8 @@ return require('packer').startup(function()
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
-	use 'simrat39/rust-tools.nvim'
+	use 'mrcjkb/rustaceanvim'
+
 	use 'hrsh7th/nvim-cmp'
 
 	-- LSP completion source:
